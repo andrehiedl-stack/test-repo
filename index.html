@@ -125,27 +125,24 @@
         color: var(--ink);
       }
       .nav__brand {
-        font-family: var(--display);
-        font-weight: 300;
-        font-size: 24px;
-        letter-spacing: -0.03em;
-        font-variation-settings:
-          "opsz" 144,
-          "SOFT" 50;
+        display: inline-flex;
+        align-items: center;
         color: inherit;
-        transition: color 600ms var(--ease-out);
+        transition: opacity 600ms var(--ease-out);
       }
-      .nav__brand em {
-        font-style: italic;
-        color: var(--coral-warm);
-        font-variation-settings:
-          "opsz" 144,
-          "SOFT" 100,
-          "wght" 300;
-        transition: color 600ms var(--ease-out);
+      .nav__brand img {
+        height: 38px;
+        width: auto;
+        display: block;
+        transition:
+          height 300ms var(--ease-out),
+          filter 600ms var(--ease-out);
       }
-      .nav.scrolled .nav__brand em {
-        color: var(--coral);
+      .nav:not(.scrolled) .nav__brand img {
+        filter: brightness(0) invert(1);
+      }
+      .nav.scrolled .nav__brand img {
+        height: 32px;
       }
       .nav__menu {
         display: flex;
@@ -1458,20 +1455,11 @@
         padding-bottom: 80px;
         border-bottom: 1px solid var(--line);
       }
-      .footer__brand h3 {
-        font-family: var(--display);
-        font-weight: 300;
-        font-size: 56px;
-        letter-spacing: -0.03em;
-        font-variation-settings:
-          "opsz" 144,
-          "SOFT" 30;
-        margin-bottom: 20px;
-        line-height: 1;
-      }
-      .footer__brand h3 em {
-        font-style: italic;
-        color: var(--coral);
+      .footer__brand .footer__logo {
+        height: 72px;
+        width: auto;
+        display: block;
+        margin-bottom: 24px;
       }
       .footer__brand p {
         font-size: 14px;
@@ -1610,6 +1598,17 @@
         .nav.scrolled {
           padding: 12px 20px;
         }
+        .nav__brand img {
+          height: 32px;
+        }
+        .nav.scrolled .nav__brand img {
+          height: 28px;
+        }
+        .footer__brand .footer__logo {
+          height: 56px;
+          margin-left: auto;
+          margin-right: auto;
+        }
         section {
           padding: 90px 20px;
         }
@@ -1723,7 +1722,9 @@
   <body>
     <!-- ══════════ NAV ══════════ -->
     <nav class="nav" id="nav">
-      <a href="#" class="nav__brand">esurf<em>zone</em></a>
+      <a href="#" class="nav__brand" aria-label="esurfzone">
+        <img src="/assets/esurfzone-logo.png" alt="esurfzone" />
+      </a>
       <div class="nav__menu">
         <a href="#elmenyek">Élmények</a>
         <a href="#efoil">Mi az az eFoil</a>
@@ -2391,7 +2392,7 @@
     <footer class="footer" id="kapcsolat">
       <div class="footer__grid">
         <div class="footer__brand">
-          <h3>esurf<em>zone</em></h3>
+          <img src="/assets/esurfzone-logo.png" alt="esurfzone" class="footer__logo" />
           <p>
             Prémium eFoil élmény a Balatonon. Lebegj a víz fölött, a Mala Gardenből — tavasztól őszig, minden napsütötte
             napon.
