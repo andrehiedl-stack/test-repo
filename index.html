@@ -1,0 +1,2717 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>ESURFZONE · Lebegj a víz felett — Balaton, Siófok</title>
+    <meta
+      name="description"
+      content="Prémium eFoil élmény a Balatonon. Stellar deszkák, személyes oktatás, Mala Garden · Siófok."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,200..900,0..100;1,9..144,200..900,0..100&family=Geist:wght@100..900&family=JetBrains+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        /* warm pearl + coral palette */
+        --pearl: #f6f1e7;
+        --pearl-soft: #fbf8f1;
+        --pearl-deep: #ece4d2;
+        --sand: #e8d9c3;
+        --ink: #0b151d; /* headline text */
+        --ink-soft: #1b2a38;
+        --muted: #5a6a79;
+        --line: rgba(11, 21, 29, 0.12);
+        --line-strong: rgba(11, 21, 29, 0.22);
+        --coral: #ff4d1f;
+        --coral-warm: #ff6a3d;
+        --coral-deep: #d13a15;
+        --ocean: #13283a;
+        --foam: #d8e4ea;
+        --display: "Fraunces", serif;
+        --body: "Geist", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        --mono: "JetBrains Mono", "Menlo", monospace;
+        --ease: cubic-bezier(0.2, 0.7, 0.15, 1);
+        --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      body {
+        background: var(--pearl);
+        color: var(--ink);
+        font-family: var(--body);
+        font-size: 16px;
+        line-height: 1.55;
+        overflow-x: hidden;
+        font-feature-settings: "ss01", "ss02", "kern", "liga", "calt";
+      }
+      img,
+      video {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+        background: none;
+        border: 0;
+        color: inherit;
+      }
+
+      /* ───── grain ───── */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9998;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/><feColorMatrix values='0 0 0 0 0.05 0 0 0 0 0.08 0 0 0 0 0.12 0 0 0 0.07 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+        mix-blend-mode: multiply;
+        opacity: 0.55;
+      }
+
+      /* ───── selection ───── */
+      ::selection {
+        background: var(--coral);
+        color: var(--pearl);
+      }
+
+      /* ═══════════ NAV ═══════════ */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 24px 40px;
+        transition:
+          background 600ms var(--ease-out),
+          backdrop-filter 600ms var(--ease-out),
+          padding 500ms var(--ease-out),
+          border-color 600ms var(--ease-out),
+          color 600ms var(--ease-out);
+        /* Pre-scroll: warm off-white text over dark hero */
+        color: var(--pearl);
+        border-bottom: 1px solid transparent;
+      }
+      .nav.scrolled {
+        background: rgba(246, 241, 231, 0.86);
+        backdrop-filter: saturate(1.2) blur(14px);
+        -webkit-backdrop-filter: saturate(1.2) blur(14px);
+        padding: 14px 40px;
+        border-bottom: 1px solid var(--line);
+        color: var(--ink);
+      }
+      .nav__brand {
+        font-family: var(--display);
+        font-weight: 300;
+        font-size: 24px;
+        letter-spacing: -0.03em;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 50;
+        color: inherit;
+        transition: color 600ms var(--ease-out);
+      }
+      .nav__brand em {
+        font-style: italic;
+        color: var(--coral-warm);
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 100,
+          "wght" 300;
+        transition: color 600ms var(--ease-out);
+      }
+      .nav.scrolled .nav__brand em {
+        color: var(--coral);
+      }
+      .nav__menu {
+        display: flex;
+        gap: 44px;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .nav__menu a {
+        position: relative;
+        padding: 6px 0;
+        color: inherit;
+        opacity: 0.82;
+        transition:
+          opacity 400ms var(--ease-out),
+          color 400ms var(--ease-out);
+      }
+      .nav__menu a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 1px;
+        background: var(--coral);
+        transition: width 400ms var(--ease-out);
+      }
+      .nav__menu a:hover {
+        opacity: 1;
+        color: var(--coral-warm);
+      }
+      .nav.scrolled .nav__menu a:hover {
+        color: var(--coral);
+      }
+      .nav__menu a:hover::after {
+        width: 100%;
+      }
+      .nav__cta {
+        padding: 12px 22px;
+        border: 1px solid currentColor;
+        border-radius: 999px;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: inherit;
+        transition:
+          background 500ms var(--ease-out),
+          color 500ms var(--ease-out),
+          border-color 500ms var(--ease-out);
+      }
+      .nav__cta:hover {
+        background: var(--coral);
+        color: var(--pearl);
+        border-color: var(--coral);
+      }
+      .nav.scrolled .nav__cta:hover {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: var(--pearl);
+      }
+
+      /* ═══════════ HERO ═══════════ */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        padding: 140px 40px 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        overflow: hidden;
+        background: var(--ink);
+        color: var(--pearl);
+      }
+      .hero__media {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .hero__media video,
+      .hero__media img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(1.05) contrast(1.02);
+      }
+      .hero__media::after {
+        /* cinematic overlay so headline is always legible */
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(11, 21, 29, 0.35) 0%,
+            rgba(11, 21, 29, 0.15) 30%,
+            rgba(11, 21, 29, 0.55) 75%,
+            rgba(11, 21, 29, 0.88) 100%
+          ),
+          linear-gradient(90deg, rgba(11, 21, 29, 0.5) 0%, rgba(11, 21, 29, 0) 50%);
+      }
+      .hero__content {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        gap: 60px;
+        padding-bottom: 30px;
+      }
+      .hero__kicker {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--coral-warm);
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        opacity: 0;
+        animation: fadeUp 900ms var(--ease-out) 300ms forwards;
+      }
+      .hero__kicker::before {
+        content: "";
+        width: 40px;
+        height: 1px;
+        background: var(--coral);
+      }
+      .hero__headline {
+        font-family: var(--display);
+        font-weight: 300;
+        font-size: clamp(52px, 9vw, 150px);
+        line-height: 1.08;
+        letter-spacing: -0.028em;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 20;
+        max-width: 1400px;
+        color: var(--pearl);
+        padding-bottom: 0.12em;
+      }
+      .hero__headline span {
+        display: block;
+        opacity: 0;
+        transform: translateY(40px);
+        animation: fadeUp 1100ms var(--ease-out) forwards;
+      }
+      .hero__headline span:nth-child(1) {
+        animation-delay: 400ms;
+      }
+      .hero__headline span:nth-child(2) {
+        animation-delay: 600ms;
+      }
+      .hero__headline em {
+        font-style: italic;
+        color: var(--coral-warm);
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 100,
+          "wght" 300;
+        padding-right: 0.06em;
+      }
+      .hero__actions {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        margin-top: 44px;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 1100ms var(--ease-out) 900ms forwards;
+      }
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 18px 30px 18px 32px;
+        background: var(--coral);
+        color: var(--pearl);
+        border-radius: 999px;
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-decoration: none;
+        box-shadow: 0 10px 30px rgba(255, 77, 31, 0.25);
+        transition:
+          transform 600ms var(--ease-out),
+          background 600ms var(--ease-out),
+          box-shadow 600ms var(--ease-out),
+          gap 500ms var(--ease-out);
+        white-space: nowrap;
+      }
+      .btn-primary svg {
+        width: 16px;
+        height: 16px;
+        transition: transform 600ms var(--ease-out);
+      }
+      .btn-primary:hover {
+        background: var(--coral-deep);
+        transform: translateY(-2px);
+        box-shadow: 0 16px 40px rgba(255, 77, 31, 0.35);
+        gap: 16px;
+      }
+      .btn-primary:hover svg {
+        transform: translateX(3px);
+      }
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        padding: 18px 4px;
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--pearl);
+        text-decoration: none;
+        position: relative;
+        opacity: 0.9;
+        transition:
+          opacity 400ms var(--ease-out),
+          letter-spacing 500ms var(--ease-out);
+      }
+      .btn-ghost::after {
+        content: "";
+        position: absolute;
+        left: 4px;
+        right: 4px;
+        bottom: 12px;
+        height: 1px;
+        background: currentColor;
+        opacity: 0.5;
+        transition:
+          opacity 500ms var(--ease-out),
+          left 500ms var(--ease-out),
+          right 500ms var(--ease-out);
+      }
+      .btn-ghost:hover {
+        opacity: 1;
+        letter-spacing: 0.16em;
+      }
+      .btn-ghost:hover::after {
+        opacity: 1;
+        left: 0;
+        right: 0;
+      }
+
+      .hero__meta {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        opacity: 0;
+        animation: fadeUp 900ms var(--ease-out) 1300ms forwards;
+      }
+      .hero__meta-item {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(246, 241, 231, 0.7);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .hero__meta-item::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--coral);
+      }
+      .hero__bottom {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 40px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(246, 241, 231, 0.18);
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(246, 241, 231, 0.55);
+      }
+      .hero__scroll {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .hero__scroll-line {
+        width: 56px;
+        height: 1px;
+        background: rgba(246, 241, 231, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+      .hero__scroll-line::after {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 100%;
+        background: var(--coral);
+        animation: scroll-line 2.6s infinite;
+      }
+      @keyframes scroll-line {
+        0% {
+          left: -18px;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+
+      /* ═══════════ LIVE STRIP · BALATON MOST (dark, flat, minimal) ═══════════ */
+      .strip {
+        background: var(--ink);
+        color: var(--pearl);
+        border-top: 1px solid rgba(246, 241, 231, 0.06);
+        border-bottom: 1px solid rgba(246, 241, 231, 0.06);
+      }
+      .strip__inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px 36px;
+        padding: 16px 40px;
+        font-family: var(--body);
+        font-size: 14px;
+        color: var(--pearl);
+      }
+      .strip__label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(246, 241, 231, 0.55);
+        margin-right: 6px;
+      }
+      .strip__pulse-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #34d97a;
+        box-shadow: 0 0 0 0 rgba(52, 217, 122, 0.6);
+        animation: livePulse 1.8s var(--ease-out) infinite;
+        flex-shrink: 0;
+      }
+      @keyframes livePulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(52, 217, 122, 0.6);
+        }
+        70% {
+          box-shadow: 0 0 0 8px rgba(52, 217, 122, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(52, 217, 122, 0);
+        }
+      }
+      .strip__stat {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-weight: 500;
+        letter-spacing: -0.005em;
+        color: var(--pearl);
+        font-feature-settings:
+          "tnum" 1,
+          "lnum" 1;
+        white-space: nowrap;
+      }
+      .strip__stat svg {
+        width: 16px;
+        height: 16px;
+        fill: none;
+        stroke: var(--coral-warm);
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        flex-shrink: 0;
+      }
+      .strip__arrow {
+        display: inline-block;
+        color: var(--coral-warm);
+        font-weight: 600;
+        margin-right: 1px;
+      }
+      .strip__warn {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 7px 14px;
+        border-radius: 999px;
+        background: rgba(246, 241, 231, 0.06);
+        border: 1px solid rgba(246, 241, 231, 0.12);
+        color: rgba(246, 241, 231, 0.72);
+        transition:
+          background 500ms var(--ease-out),
+          border-color 500ms var(--ease-out),
+          color 500ms var(--ease-out);
+      }
+      .strip__warn-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #9aa3ad;
+        box-shadow: 0 0 0 0 rgba(154, 163, 173, 0.35);
+        transition: background 500ms var(--ease-out);
+        flex-shrink: 0;
+      }
+      .strip__warn[data-level="1"] {
+        background: rgba(245, 180, 0, 0.1);
+        border-color: rgba(245, 180, 0, 0.4);
+        color: #ffd25a;
+      }
+      .strip__warn[data-level="1"] .strip__warn-dot {
+        background: #f5b400;
+        animation: warnPulse1 1.4s var(--ease-out) infinite;
+      }
+      .strip__warn[data-level="2"] {
+        background: rgba(229, 57, 53, 0.12);
+        border-color: rgba(229, 57, 53, 0.5);
+        color: #ff7a7a;
+      }
+      .strip__warn[data-level="2"] .strip__warn-dot {
+        background: #ff4747;
+        animation: warnPulse2 0.8s var(--ease-out) infinite;
+      }
+      @keyframes warnPulse1 {
+        0% {
+          box-shadow: 0 0 0 0 rgba(245, 180, 0, 0.55);
+        }
+        70% {
+          box-shadow: 0 0 0 7px rgba(245, 180, 0, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(245, 180, 0, 0);
+        }
+      }
+      @keyframes warnPulse2 {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 71, 71, 0.6);
+        }
+        70% {
+          box-shadow: 0 0 0 8px rgba(255, 71, 71, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(255, 71, 71, 0);
+        }
+      }
+
+      /* ═══════════ SECTION BASE ═══════════ */
+      section {
+        padding: 140px 40px;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--coral-deep);
+        margin-bottom: 36px;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 34px;
+        height: 1px;
+        background: var(--coral);
+      }
+      .eyebrow em {
+        color: var(--muted);
+        font-style: normal;
+      }
+
+      .section-title {
+        font-family: var(--display);
+        font-weight: 300;
+        font-size: clamp(42px, 6.4vw, 104px);
+        line-height: 1.06;
+        letter-spacing: -0.028em;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 30;
+        max-width: 1100px;
+        padding-bottom: 0.12em;
+      }
+      .section-title em {
+        font-style: italic;
+        color: var(--coral);
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 100,
+          "wght" 300;
+      }
+      .section-title + p,
+      .section-title + .experience__specs {
+        margin-top: 44px;
+      }
+      .eyebrow {
+        margin-top: 0;
+      }
+
+      /* ═══════════ INTRO ═══════════ */
+      .intro {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 100px;
+        align-items: start;
+      }
+      .intro > .reveal:first-child {
+        padding-top: 10px;
+      }
+      .intro__text p {
+        font-size: 19px;
+        line-height: 1.55;
+        color: var(--ink-soft);
+        max-width: 520px;
+        margin-bottom: 24px;
+      }
+      .intro__stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin-top: 50px;
+      }
+      .intro__stat .num {
+        font-family: var(--display);
+        font-weight: 300;
+        font-size: 68px;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 30;
+        color: var(--ink);
+      }
+      .intro__stat .num em {
+        font-family: var(--display);
+        font-style: italic;
+        color: var(--coral);
+        font-size: 56px;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 100;
+      }
+      .intro__stat .label {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 14px;
+      }
+
+      /* ═══════════ SERVICES (photo-driven grid) ═══════════ */
+      .services {
+        padding-top: 160px;
+      }
+      .services__head {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 80px;
+        margin-bottom: 80px;
+        align-items: end;
+      }
+      .services__head p {
+        font-size: 17px;
+        color: var(--muted);
+        max-width: 460px;
+        line-height: 1.55;
+      }
+      .services__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 36px;
+      }
+      .service {
+        position: relative;
+        border-radius: 4px;
+        overflow: hidden;
+        background: var(--ink);
+        cursor: pointer;
+        isolation: isolate;
+      }
+      .service__img-wrap {
+        position: relative;
+        aspect-ratio: 4/3;
+        overflow: hidden;
+        background: linear-gradient(135deg, #13283a, #0b151d);
+      }
+      .service__img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 1200ms var(--ease);
+      }
+      .service:hover .service__img {
+        transform: scale(1.04);
+      }
+      .service__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(11, 21, 29, 0.05) 0%,
+          rgba(11, 21, 29, 0.2) 50%,
+          rgba(11, 21, 29, 0.82) 100%
+        );
+      }
+      .service__tag {
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--pearl);
+        background: rgba(255, 77, 31, 0.9);
+        padding: 8px 14px;
+        border-radius: 999px;
+      }
+      .service__price {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(246, 241, 231, 0.85);
+        padding: 8px 14px;
+        border: 1px solid rgba(246, 241, 231, 0.35);
+        border-radius: 999px;
+        backdrop-filter: blur(4px);
+      }
+      .service__content {
+        position: absolute;
+        left: 24px;
+        right: 24px;
+        bottom: 24px;
+        color: var(--pearl);
+      }
+      .service__title {
+        font-family: var(--display);
+        font-weight: 300;
+        font-size: 42px;
+        line-height: 0.95;
+        letter-spacing: -0.02em;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 30;
+        margin-bottom: 10px;
+      }
+      .service__title em {
+        font-style: italic;
+        color: var(--coral-warm);
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 100;
+      }
+      .service__desc {
+        font-size: 14px;
+        line-height: 1.5;
+        color: rgba(246, 241, 231, 0.8);
+        max-width: 340px;
+        margin-bottom: 16px;
+      }
+      .service__cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--coral-warm);
+        padding-top: 12px;
+        border-top: 1px solid rgba(246, 241, 231, 0.25);
+      }
+      .service__cta::after {
+        content: "→";
+        transition: transform 400ms var(--ease);
+      }
+      .service:hover .service__cta::after {
+        transform: translateX(6px);
+      }
+
+      /* ═══════════ EXPERIENCE / BOARD ═══════════ */
+      .experience {
+        background: var(--pearl-deep);
+        display: grid;
+        grid-template-columns: 1.05fr 1fr;
+        gap: 100px;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .experience__board {
+        position: relative;
+        height: 560px;
+      }
+      .experience__board::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 640px;
+        height: 420px;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(ellipse, rgba(255, 77, 31, 0.2) 0%, transparent 60%);
+        filter: blur(40px);
+      }
+      .experience__board img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 30px 60px rgba(11, 21, 29, 0.25));
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-12px) rotate(0.5deg);
+        }
+      }
+      .experience__body p {
+        font-size: 18px;
+        color: var(--ink-soft);
+        line-height: 1.6;
+        margin-bottom: 20px;
+        max-width: 520px;
+      }
+      .experience__specs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 40px;
+        padding-top: 30px;
+        border-top: 1px solid var(--line);
+      }
+      .spec-label {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .spec-value {
+        font-family: var(--display);
+        font-size: 24px;
+        font-weight: 400;
+        color: var(--ink);
+        font-variation-settings: "opsz" 144;
+      }
+
+      /* ═══════════ PROCESS ═══════════ */
+      .process__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+        margin-top: 80px;
+      }
+      .step {
+        position: relative;
+        padding-top: 40px;
+        border-top: 1px solid var(--line);
+      }
+      .step__num {
+        position: absolute;
+        top: -14px;
+        left: 0;
+        background: var(--pearl);
+        padding-right: 16px;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--coral);
+      }
+      .step__title {
+        font-family: var(--display);
+        font-size: 28px;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 30;
+        margin-bottom: 14px;
+        color: var(--ink);
+      }
+      .step__title em {
+        font-style: italic;
+        color: var(--coral);
+      }
+      .step p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+
+      /* ═══════════ LOCATION ═══════════ */
+      .location {
+        background: var(--ink);
+        color: var(--pearl);
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .location .eyebrow {
+        color: var(--coral-warm);
+      }
+      .location .eyebrow em {
+        color: rgba(246, 241, 231, 0.55);
+      }
+      .location .section-title {
+        color: var(--pearl);
+      }
+      .location .section-title em {
+        color: var(--coral-warm);
+      }
+      .location__body p {
+        font-size: 17px;
+        color: rgba(246, 241, 231, 0.75);
+        line-height: 1.6;
+        margin-bottom: 20px;
+        max-width: 520px;
+      }
+      .location__info {
+        display: grid;
+        gap: 22px;
+        margin-top: 40px;
+        padding-top: 30px;
+        border-top: 1px solid rgba(246, 241, 231, 0.18);
+      }
+      .location__info dt {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(246, 241, 231, 0.45);
+        margin-bottom: 4px;
+      }
+      .location__info dd {
+        font-family: var(--display);
+        font-size: 20px;
+        font-weight: 400;
+        color: var(--pearl);
+      }
+      .location__media {
+        position: relative;
+        aspect-ratio: 4/5;
+        overflow: hidden;
+        border-radius: 4px;
+        background: #0f1b26;
+        border: 1px solid rgba(246, 241, 231, 0.1);
+      }
+      .location__media iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+      .location__badge {
+        position: absolute;
+        bottom: 24px;
+        left: 24px;
+        right: 24px;
+        z-index: 3;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--pearl);
+        display: flex;
+        justify-content: space-between;
+        pointer-events: none;
+        text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+      }
+      .location__media::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 22%;
+        background: linear-gradient(180deg, transparent, rgba(11, 21, 29, 0.55));
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      /* ═══════════ PRICING ═══════════ */
+      .pricing__head {
+        margin-bottom: 80px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 60px;
+        align-items: end;
+      }
+      .pricing__head .section-title {
+        white-space: nowrap;
+        max-width: none;
+      }
+      .pricing__sub {
+        font-family: var(--body);
+        font-size: 15px;
+        line-height: 1.55;
+        color: var(--muted);
+        max-width: 320px;
+        padding-bottom: 18px;
+        text-align: right;
+      }
+      .pricing__table {
+        border-top: 1px solid var(--line);
+      }
+      .price-row {
+        display: grid;
+        grid-template-columns: 80px 1.6fr 2fr auto auto;
+        gap: 40px;
+        align-items: center;
+        padding: 34px 0;
+        border-bottom: 1px solid var(--line);
+        position: relative;
+        transition:
+          padding 780ms var(--ease-out),
+          background 780ms var(--ease-out);
+      }
+      .price-row::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--coral);
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: transform 780ms var(--ease-out);
+      }
+      .price-row:hover {
+        padding-left: 30px;
+      }
+      .price-row:hover::before {
+        transform: scaleY(1);
+      }
+      .price-row__num {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+      }
+      .price-row__name {
+        font-family: var(--display);
+        font-size: 28px;
+        font-weight: 400;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 30;
+        color: var(--ink);
+      }
+      .price-row__name em {
+        font-style: italic;
+        color: var(--coral);
+      }
+      .price-row__name small {
+        display: inline-block;
+        margin-left: 10px;
+        padding: 3px 10px;
+        background: var(--sand);
+        color: var(--ink-soft);
+        border-radius: 999px;
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        vertical-align: middle;
+      }
+      .price-row__desc {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      .price-row__price {
+        font-family: var(--body);
+        font-size: 26px;
+        font-weight: 500;
+        color: var(--ink);
+        text-align: right;
+        white-space: nowrap;
+        letter-spacing: -0.01em;
+        font-feature-settings:
+          "tnum" 1,
+          "lnum" 1;
+      }
+      .price-row__price small {
+        display: block;
+        font-family: var(--mono);
+        font-size: 9px;
+        font-weight: 400;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+      .price-row__arrow {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        border: 1px solid var(--line-strong);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background 780ms var(--ease-out),
+          border-color 780ms var(--ease-out),
+          color 780ms var(--ease-out),
+          transform 780ms var(--ease-out);
+        color: var(--ink);
+      }
+      .price-row:hover .price-row__arrow {
+        background: var(--coral);
+        border-color: var(--coral);
+        color: var(--pearl);
+        transform: rotate(-45deg);
+      }
+
+      /* ═══════════ GALLERY (Instagram feed) ═══════════ */
+      .gallery {
+        background: var(--pearl-soft);
+      }
+      .gallery__head {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 60px;
+        margin-bottom: 56px;
+        align-items: end;
+      }
+      .gallery__profile {
+        justify-self: end;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 18px 22px;
+        background: var(--pearl);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        text-decoration: none;
+        transition:
+          transform 600ms var(--ease-out),
+          box-shadow 600ms var(--ease-out),
+          border-color 600ms var(--ease-out);
+      }
+      .gallery__profile:hover {
+        transform: translateY(-2px);
+        border-color: var(--coral);
+        box-shadow: 0 10px 30px rgba(255, 77, 31, 0.14);
+      }
+      .gallery__avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background:
+          linear-gradient(var(--pearl), var(--pearl)) padding-box,
+          linear-gradient(135deg, #feda75, #fa7e1e 35%, #d62976 60%, #962fbf 80%, #4f5bd5) border-box;
+        border: 2px solid transparent;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .gallery__avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .gallery__profile-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        line-height: 1.2;
+      }
+      .gallery__handle {
+        font-family: var(--body);
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--ink);
+        letter-spacing: -0.005em;
+      }
+      .gallery__follow {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--coral);
+      }
+      .gallery__grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 14px;
+      }
+      .gallery__item {
+        aspect-ratio: 1;
+        overflow: hidden;
+        background: var(--pearl-deep);
+        position: relative;
+        border-radius: 2px;
+        display: block;
+        text-decoration: none;
+        color: inherit;
+      }
+      .gallery__item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 900ms var(--ease-out);
+      }
+      .gallery__item:hover img {
+        transform: scale(1.06);
+      }
+      .gallery__item.lg {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+      .gallery__item::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(11, 21, 29, 0) 40%, rgba(11, 21, 29, 0.55));
+        opacity: 0;
+        transition: opacity 600ms var(--ease-out);
+      }
+      .gallery__item:hover::after {
+        opacity: 1;
+      }
+      .gallery__meta {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+        color: var(--pearl);
+        font-family: var(--body);
+        font-weight: 600;
+        font-size: 15px;
+        opacity: 0;
+        transition: opacity 600ms var(--ease-out);
+      }
+      .gallery__item:hover .gallery__meta {
+        opacity: 1;
+      }
+      .gallery__meta span {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .gallery__meta svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+      }
+      .gallery__foot {
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 28px;
+        border-top: 1px solid var(--line);
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .gallery__foot a {
+        color: var(--coral);
+        text-decoration: none;
+      }
+
+      /* ═══════════ CTA ═══════════ */
+      .cta {
+        background: var(--ink);
+        color: var(--pearl);
+        text-align: center;
+        padding: 180px 40px 160px;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 1100px;
+        height: 700px;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(ellipse, rgba(255, 77, 31, 0.18) 0%, transparent 60%);
+        pointer-events: none;
+      }
+      .cta__kicker {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--coral-warm);
+        margin-bottom: 32px;
+        position: relative;
+        z-index: 1;
+      }
+      .cta__headline {
+        font-family: var(--display);
+        font-weight: 300;
+        font-size: clamp(56px, 9vw, 160px);
+        line-height: 0.88;
+        letter-spacing: -0.035em;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 20;
+        margin-bottom: 40px;
+        position: relative;
+        z-index: 1;
+      }
+      .cta__headline em {
+        font-style: italic;
+        color: var(--coral-warm);
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 100;
+      }
+      .cta__sub {
+        font-size: 17px;
+        max-width: 580px;
+        margin: 0 auto 50px;
+        color: rgba(246, 241, 231, 0.75);
+        line-height: 1.6;
+        position: relative;
+        z-index: 1;
+      }
+      .btn-xl {
+        display: inline-flex;
+        align-items: center;
+        gap: 18px;
+        padding: 24px 44px;
+        background: var(--coral);
+        color: var(--pearl);
+        border-radius: 999px;
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        transition: all 500ms var(--ease);
+        position: relative;
+        z-index: 1;
+        border: 1px solid var(--coral);
+      }
+      .btn-xl::after {
+        content: "→";
+        font-size: 18px;
+        transition: transform 400ms var(--ease);
+      }
+      .btn-xl:hover {
+        background: transparent;
+        color: var(--coral-warm);
+        transform: translateY(-3px);
+        box-shadow: 0 20px 50px -20px rgba(255, 77, 31, 0.6);
+      }
+      .btn-xl:hover::after {
+        transform: translateX(6px);
+      }
+
+      /* ═══════════ FOOTER ═══════════ */
+      .footer {
+        background: var(--pearl-deep);
+        padding: 100px 40px 36px;
+        border-top: 1px solid var(--line);
+      }
+      .footer__grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 60px;
+        padding-bottom: 80px;
+        border-bottom: 1px solid var(--line);
+      }
+      .footer__brand h3 {
+        font-family: var(--display);
+        font-weight: 300;
+        font-size: 56px;
+        letter-spacing: -0.03em;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 30;
+        margin-bottom: 20px;
+        line-height: 1;
+      }
+      .footer__brand h3 em {
+        font-style: italic;
+        color: var(--coral);
+      }
+      .footer__brand p {
+        font-size: 14px;
+        color: var(--muted);
+        max-width: 340px;
+        line-height: 1.55;
+      }
+      .footer h4 {
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin-bottom: 22px;
+      }
+      .footer ul {
+        list-style: none;
+        display: grid;
+        gap: 12px;
+      }
+      .footer a {
+        font-size: 14px;
+        color: var(--ink-soft);
+        transition: color 300ms var(--ease);
+      }
+      .footer a:hover {
+        color: var(--coral);
+      }
+      .footer__bottom {
+        padding-top: 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: var(--mono);
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      /* ───── reveal anim ───── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(34px);
+        transition:
+          opacity 900ms var(--ease-out),
+          transform 900ms var(--ease-out);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ═══════════ RESPONSIVE ═══════════ */
+      @media (max-width: 1200px) {
+        .strip__stat--lg {
+          display: none;
+        }
+      }
+      @media (max-width: 960px) {
+        .strip__stat--md {
+          display: none;
+        }
+      }
+
+      @media (max-width: 1100px) {
+        .intro {
+          grid-template-columns: 1fr;
+          gap: 50px;
+        }
+        .services__grid {
+          grid-template-columns: 1fr;
+        }
+        .experience {
+          grid-template-columns: 1fr;
+          gap: 50px;
+          padding: 100px 40px;
+        }
+        .experience__board {
+          height: 380px;
+        }
+        .process__grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .location {
+          grid-template-columns: 1fr;
+          gap: 50px;
+        }
+        .gallery__grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .footer__grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 50px;
+        }
+        .services__head {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        .gallery__head {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        .gallery__profile {
+          justify-self: start;
+        }
+        .pricing__head {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          align-items: start;
+        }
+        .pricing__head .section-title {
+          white-space: normal;
+        }
+        .pricing__sub {
+          text-align: left;
+          padding-bottom: 0;
+          max-width: 520px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .nav {
+          padding: 18px 20px;
+        }
+        .nav__menu {
+          display: none;
+        }
+        .nav.scrolled {
+          padding: 12px 20px;
+        }
+        section {
+          padding: 90px 20px;
+        }
+        .hero {
+          padding: 110px 20px 30px;
+          min-height: 700px;
+          height: 700px;
+        }
+        .hero__content {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          padding-bottom: 20px;
+        }
+        .hero__headline {
+          font-size: clamp(44px, 12vw, 72px);
+        }
+        .hero__kicker {
+          display: none;
+        }
+        .hero__actions {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 14px;
+          margin-top: 28px;
+        }
+        .hero__actions .btn-primary {
+          justify-content: center;
+        }
+        .hero__actions .btn-ghost {
+          display: none;
+        }
+        .hero__meta {
+          display: none;
+        }
+        .hero__bottom {
+          display: none;
+        }
+        .strip__inner {
+          padding: 14px 20px;
+          gap: 12px 20px;
+          font-size: 12px;
+          justify-content: center;
+          text-align: center;
+        }
+        .strip__label {
+          font-size: 9px;
+          margin-right: 0;
+        }
+        .strip__stat svg {
+          width: 14px;
+          height: 14px;
+        }
+        .strip__warn {
+          font-size: 9px;
+          padding: 5px 10px;
+        }
+        .intro__stats {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        .services {
+          padding-top: 90px;
+        }
+        .process__grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        .gallery__grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+        .gallery__item.lg {
+          grid-column: span 2;
+          grid-row: auto;
+        }
+        .footer__grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          padding-bottom: 50px;
+        }
+        .price-row {
+          grid-template-columns: 1fr auto;
+          gap: 10px;
+          padding: 24px 0;
+        }
+        .price-row__num,
+        .price-row__desc,
+        .price-row__arrow {
+          display: none;
+        }
+        .price-row__name {
+          font-size: 22px;
+        }
+        .price-row__price {
+          font-size: 22px;
+        }
+        .service__title {
+          font-size: 32px;
+        }
+        .cta {
+          padding: 120px 20px 100px;
+        }
+        .footer__bottom {
+          flex-direction: column;
+          gap: 16px;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ══════════ NAV ══════════ -->
+    <nav class="nav" id="nav">
+      <a href="#" class="nav__brand">esurf<em>zone</em></a>
+      <div class="nav__menu">
+        <a href="#elmenyek">Élmények</a>
+        <a href="#efoil">Mi az az eFoil</a>
+        <a href="#helyszin">Helyszín</a>
+        <a href="#arak">Árak</a>
+        <a href="#kapcsolat">Kapcsolat</a>
+      </div>
+      <a href="#foglalas" class="nav__cta">Foglalás →</a>
+    </nav>
+
+    <!-- ══════════ HERO ══════════ -->
+    <section class="hero">
+      <div class="hero__media">
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          poster="https://esurfzone.hu/wp-content/uploads/2025/12/szolgaltatas1.jpg"
+          onerror="this.style.display = 'none'"
+        >
+          <source
+            src="https://esurfzone.hu/wp-content/uploads/2026/03/YTDown.com_YouTube_Fliteboard-eFoil-High-performance-versat_Media_yFNrMFcYqOc_001_1080p.mp4"
+            type="video/mp4"
+          />
+        </video>
+        <img
+          src="https://esurfzone.hu/wp-content/uploads/2025/12/szolgaltatas1.jpg"
+          alt="eFoil a Balatonon"
+          onerror="
+            this.src = 'https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=2400&q=80'
+          "
+          style="z-index: -1"
+        />
+      </div>
+      <div class="hero__content">
+        <div>
+          <div class="hero__kicker">Prémium eFoil élmény · Balaton, Siófok</div>
+          <h1 class="hero__headline">
+            <span>Lebegj a <em>víz</em> felett</span>
+            <span>a Balatonon.</span>
+          </h1>
+          <div class="hero__actions">
+            <a href="#foglalas" class="btn-primary hero__book">
+              <span>Időpontfoglalás</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M5 12h14M13 6l6 6-6 6"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+            <a href="#arak" class="btn-ghost">Árak megtekintése</a>
+          </div>
+        </div>
+        <div class="hero__meta">
+          <div class="hero__meta-item">Mala Garden · Siófok</div>
+          <div class="hero__meta-item">Csendes · Elektromos</div>
+          <div class="hero__meta-item">Kezdő · Haladó</div>
+        </div>
+      </div>
+      <div class="hero__bottom">
+        <div>46°54′N · 18°03′E</div>
+        <div class="hero__scroll">
+          <span>Görgess lejjebb</span>
+          <div class="hero__scroll-line"></div>
+        </div>
+        <div>Est. 2024 · #ESURFZONE</div>
+      </div>
+    </section>
+
+    <!--
+  ══════════ LIVE STRIP · BALATON MOST ══════════
+  Valós idejű adatok kliens-oldali fetch-fel az Open-Meteo-ból (ingyenes,
+  kulcs nélkül, CORS-enabled):
+    · api.open-meteo.com        → levegő, szél, szélirány, széllökés, UV, nap
+    · marine-api.open-meteo.com → víz hőmérséklet (fallback: levegő-2°C)
+
+  A balatoni viharjelzés (I./II. fok) a következő 6 óra max széllökéséből
+  származtatott érték a hivatalos balatoni szabály szerint:
+    · gust ≥ 60 km/h → II. fok (piros)
+    · gust ≥ 40 km/h → I. fok  (sárga)
+    · alatta          → nincs   (szürke)
+
+  TODO (2. lépcső): valódi OMSZ/MeteoAlarm viharjelzés lekérése egy
+  Cloudflare Worker / Vercel Edge Function proxyn keresztül, ami a
+  https://feeds.meteoalarm.org/api/v1/warnings/feeds-hungary feedet
+  szolgálja ki CORS engedéllyel. Az alábbi JS-ben ezt a [data-field]-et
+  kell akkor átírni a worker URL-jére.
+-->
+    <div class="strip" id="live-strip">
+      <div class="strip__inner">
+        <span class="strip__label"><span class="strip__pulse-dot"></span>Balaton · Siófok · Live</span>
+
+        <span class="strip__stat" title="Helyi idő">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 7v5l3 2" />
+          </svg>
+          <span data-field="time">14:32</span>
+        </span>
+
+        <span class="strip__stat" title="Levegő hőmérséklet">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"
+            />
+          </svg>
+          <span data-field="air">24°</span>
+        </span>
+
+        <span class="strip__stat" title="Víz hőmérséklet">
+          <svg viewBox="0 0 24 24"><path d="M12 3s6 7 6 11a6 6 0 1 1-12 0c0-4 6-11 6-11z" /></svg>
+          <span data-field="water">21°</span>
+        </span>
+
+        <span class="strip__stat" title="Szél">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 8h11a3 3 0 1 0-3-3" />
+            <path d="M3 16h14a3 3 0 1 1-3 3" />
+            <path d="M3 12h17" />
+          </svg>
+          <span class="strip__arrow" data-field="wind-dir">↗</span>
+          <span data-field="wind">6 km/h</span>
+        </span>
+
+        <span class="strip__stat strip__stat--md" title="Hullám">
+          <svg viewBox="0 0 24 24"><path d="M2 12c3 0 3-3 6-3s3 3 6 3 3-3 6-3M2 18c3 0 3-3 6-3s3 3 6 3 3-3 6-3" /></svg>
+          <span data-field="wave">0,2 m</span>
+        </span>
+
+        <span class="strip__stat strip__stat--lg" title="Napnyugta">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 18h18" />
+            <path d="M6 18a6 6 0 0 1 12 0" />
+            <path d="M12 2v4" />
+            <path d="M4.2 9l2.1-2.1" />
+            <path d="M19.8 9l-2.1-2.1" />
+            <path d="M15 22l-3-3-3 3" />
+          </svg>
+          <span data-field="sunset">20:16</span>
+        </span>
+
+        <span class="strip__warn" data-level="0" data-field="warn-root" title="Balatoni viharjelzés">
+          <span class="strip__warn-dot"></span>
+          <span data-field="warn-text">Nincs viharjelzés</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- ══════════ INTRO ══════════ -->
+    <section class="intro" id="efoil">
+      <div class="reveal">
+        <div class="eyebrow">01 <em>/</em> Mi az az eFoil</div>
+        <h2 class="section-title">
+          Lebegj <em>csendben</em>.<br />
+          A Balaton felett.
+        </h2>
+      </div>
+      <div class="intro__text reveal">
+        <p>
+          Az eFoil egy elektromos szörfdeszka szárnnyal. A víz alatti szárny emelőereje a deszkát a felszín fölé repíti
+          — nincs hullám, nincs motorzaj, csak te és a Balaton.
+        </p>
+        <p>Egy teljesen új perspektíva a tóra, amit egyetlen más sportban sem élhetsz át.</p>
+        <div class="intro__stats">
+          <div class="intro__stat">
+            <div class="num">45<em>km/h</em></div>
+            <div class="label">Max sebesség</div>
+          </div>
+          <div class="intro__stat">
+            <div class="num">90<em>perc</em></div>
+            <div class="label">Akkumulátor</div>
+          </div>
+          <div class="intro__stat">
+            <div class="num">12<em>+</em></div>
+            <div class="label">Életkor</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ SERVICES ══════════ -->
+    <section class="services" id="elmenyek">
+      <div class="services__head">
+        <div class="reveal">
+          <div class="eyebrow">02 <em>/</em> Élmények</div>
+          <h2 class="section-title">
+            Válaszd ki az<br />
+            <em>élményed</em>.
+          </h2>
+        </div>
+        <p class="reveal">
+          Minden foglalás tartalmazza a teljes felszerelést, a parti oktatást, és egy személyes instruktort, aki
+          végigkísér az első lebegésig.
+        </p>
+      </div>
+
+      <div class="services__grid">
+        <article class="service reveal">
+          <div class="service__img-wrap">
+            <img
+              class="service__img"
+              src="https://esurfzone.hu/wp-content/uploads/2026/03/esurfzone_egyeni_efoil.png"
+              onerror="
+                this.onerror = null;
+                this.src =
+                  'https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=1600&q=80';
+              "
+              alt="Egyéni eFoil élmény"
+            />
+            <div class="service__overlay"></div>
+            <div class="service__tag">01 · Egyéni</div>
+            <div class="service__price">75 perc</div>
+          </div>
+          <div class="service__content">
+            <h3 class="service__title">Egyéni <em>eFoil</em></h3>
+            <p class="service__desc">
+              Egy deszka, egy instruktor, a teljes figyelem rajtad. A leggyorsabb út az első lebegésig.
+            </p>
+            <div class="service__cta">Részletek</div>
+          </div>
+        </article>
+
+        <article class="service reveal">
+          <div class="service__img-wrap">
+            <img
+              class="service__img"
+              src="https://esurfzone.hu/wp-content/uploads/2026/03/esurfzone_paros_efoil-1.jpg"
+              onerror="
+                this.onerror = null;
+                this.src =
+                  'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1600&q=80';
+              "
+              alt="Páros eFoil élmény"
+            />
+            <div class="service__overlay"></div>
+            <div class="service__tag">02 · Páros</div>
+            <div class="service__price">75 perc / pár</div>
+          </div>
+          <div class="service__content">
+            <h3 class="service__title">Páros <em>kaland</em></h3>
+            <p class="service__desc">Két deszka, két instruktor, egy közös élmény. Randi vagy kettesben a Balatonon.</p>
+            <div class="service__cta">Részletek</div>
+          </div>
+        </article>
+
+        <article class="service reveal">
+          <div class="service__img-wrap">
+            <img
+              class="service__img"
+              src="https://esurfzone.hu/wp-content/uploads/2026/04/esurfzone_berlet.jpg"
+              onerror="
+                this.onerror = null;
+                this.src =
+                  'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80';
+              "
+              alt="5 alkalmas bérlet"
+            />
+            <div class="service__overlay"></div>
+            <div class="service__tag">03 · Bérlet</div>
+            <div class="service__price">5 × 60 perc</div>
+          </div>
+          <div class="service__content">
+            <h3 class="service__title">5 alkalmas <em>bérlet</em></h3>
+            <p class="service__desc">
+              Öt alkalom, 15% kedvezmény — a magabiztos lebegés kulcsa. A haladóknak, a megszállottaknak.
+            </p>
+            <div class="service__cta">Részletek</div>
+          </div>
+        </article>
+
+        <article class="service reveal">
+          <div class="service__img-wrap">
+            <img
+              class="service__img"
+              src="https://esurfzone.hu/wp-content/uploads/2026/04/esurfzone_csapatepito.jpg"
+              onerror="
+                this.onerror = null;
+                this.src = 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1600&q=80';
+              "
+              alt="Csapatépítő program"
+            />
+            <div class="service__overlay"></div>
+            <div class="service__tag">04 · Csapat</div>
+            <div class="service__price">Egyedi</div>
+          </div>
+          <div class="service__content">
+            <h3 class="service__title">Csapatépítő <em>program</em></h3>
+            <p class="service__desc">
+              Teljes körű szervezés privát eseményekhez — házhoz is megyünk a Balaton partján.
+            </p>
+            <div class="service__cta">Részletek</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══════════ EXPERIENCE / BOARD ══════════ -->
+    <section class="experience">
+      <div class="experience__board reveal">
+        <img
+          src="https://esurfzone.hu/wp-content/uploads/2025/12/Stellar-S-Side-Red.fzzvie4p0xh.png"
+          onerror="
+            this.onerror = null;
+            this.src = 'https://images.unsplash.com/photo-1502933691298-84fc14542831?auto=format&fit=crop&w=1600&q=80';
+          "
+          alt="Stellar S eFoil board"
+        />
+      </div>
+      <div class="experience__body reveal">
+        <div class="eyebrow">03 <em>/</em> A felszerelés</div>
+        <h2 class="section-title">
+          Egy új generációs<br />
+          <em>vízi sport</em>.
+        </h2>
+        <p>
+          Prémium Stellar eFoil deszkáinkkal olyan élményben lesz részed, amit a Balaton sehol máshol nem kínál.
+          Oktatóink minden lépést végigkísérnek — a parti bevezetéstől az első önálló lebegésig.
+        </p>
+        <p>A deszka csendes, elektromos és teljesen zöld. Egyetlen hullámot sem hagysz magad mögött.</p>
+        <div class="experience__specs">
+          <div>
+            <div class="spec-label">Deszka</div>
+            <div class="spec-value">Stellar S</div>
+          </div>
+          <div>
+            <div class="spec-label">Sebesség</div>
+            <div class="spec-value">45 km/h</div>
+          </div>
+          <div>
+            <div class="spec-label">Hatótáv</div>
+            <div class="spec-value">30+ km</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ PROCESS ══════════ -->
+    <section class="process">
+      <div class="reveal">
+        <div class="eyebrow">04 <em>/</em> Az első alkalom</div>
+        <h2 class="section-title">
+          Négy lépés<br />
+          az első <em>lebegésig</em>.
+        </h2>
+      </div>
+      <div class="process__grid">
+        <div class="step reveal">
+          <div class="step__num">01 — Foglalás</div>
+          <h3 class="step__title"><em>Foglalj</em> időpontot</h3>
+          <p>Válaszd ki az időpontot és az élményt. Néhány kattintás, és máris a naptáradban van a lebegés napja.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step__num">02 — Érkezés</div>
+          <h3 class="step__title">Gyere a <em>Mala Gardenbe</em></h3>
+          <p>
+            Találkozunk a parton, megismerjük egymást, majd minden felszerelést előkészítünk — te csak a lebegésre
+            koncentrálj.
+          </p>
+        </div>
+        <div class="step reveal">
+          <div class="step__num">03 — Felkészítés</div>
+          <h3 class="step__title"><em>15 perc</em> a parton</h3>
+          <p>
+            Elméleti bevezetés a parton. Megtanulod, hogyan működik a deszka, és hogyan maradsz biztonságban a vízen.
+          </p>
+        </div>
+        <div class="step reveal">
+          <div class="step__num">04 — Lebegés</div>
+          <h3 class="step__title">60 perc a <em>vízen</em></h3>
+          <p>Saját oktatóval, saját tempóban. A pillanat, amire hónapokig fogsz emlékezni.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ LOCATION ══════════ -->
+    <section class="location" id="helyszin">
+      <div class="location__body reveal">
+        <div class="eyebrow">05 <em>/</em> Helyszín</div>
+        <h2 class="section-title">
+          Ahol a Balaton<br />
+          <em>valódi</em>.
+        </h2>
+        <p>
+          A Mala Garden Siófok legjobb partszakaszán található — napkeltétől napnyugtáig itt vagyunk. Prémium hely egy
+          prémium élményhez.
+        </p>
+        <p>
+          Beülhetsz utána a Mala Garden étterembe, vagy épp fürödhetsz egyet. Egy teljes nap a Balatonnál, úgy, ahogy
+          kell.
+        </p>
+        <dl class="location__info">
+          <div>
+            <dt>Cím</dt>
+            <dd>Mala Garden, Siófok · Petőfi sétány</dd>
+          </div>
+          <div>
+            <dt>Nyitva</dt>
+            <dd>Május — Szeptember · 09:00 — 19:00</dd>
+          </div>
+          <div>
+            <dt>Foglalás</dt>
+            <dd>+36 20 123 4567 · info@esurfzone.hu</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="location__media reveal">
+        <iframe
+          src="https://www.google.com/maps?q=Mala+Garden+Sio%CC%81fok&z=15&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+          title="ESURFZONE helyszín · Mala Garden, Siófok"
+        ></iframe>
+        <div class="location__badge">
+          <span>46°54′N · 18°03′E</span>
+          <span>Balaton · HU</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ PRICING ══════════ -->
+    <section class="pricing" id="arak">
+      <div class="pricing__head reveal">
+        <div>
+          <div class="eyebrow">06 <em>/</em> Árak</div>
+          <h2 class="section-title">Válaszd a <em>sajátod</em>.</h2>
+        </div>
+        <p class="pricing__sub">
+          Rejtett költségek nélkül. Minden csomag tartalmazza az oktatót, a teljes felszerelést és a Stellar S deszkát.
+        </p>
+      </div>
+      <div class="pricing__table">
+        <div class="price-row reveal">
+          <div class="price-row__num">01</div>
+          <div class="price-row__name">Egyéni <em>eFoil</em> élmény</div>
+          <div class="price-row__desc">75 perc élmény · 60 perc a vízen · saját oktatóval</div>
+          <div class="price-row__price">35 000 Ft<small>/ 1 alkalom</small></div>
+          <div class="price-row__arrow">→</div>
+        </div>
+        <div class="price-row reveal">
+          <div class="price-row__num">02</div>
+          <div class="price-row__name">Páros <em>eFoil</em> élmény</div>
+          <div class="price-row__desc">Éld át valakivel együtt — két oktató, két deszka</div>
+          <div class="price-row__price">60 000 Ft<small>/ pár</small></div>
+          <div class="price-row__arrow">→</div>
+        </div>
+        <div class="price-row reveal">
+          <div class="price-row__num">03</div>
+          <div class="price-row__name">5 alkalmas <em>bérlet</em> <small>népszerű</small></div>
+          <div class="price-row__desc">Öt alkalom, 15% kedvezménnyel — a magabiztos tudáshoz</div>
+          <div class="price-row__price">150 000 Ft<small>/ 5 alkalom</small></div>
+          <div class="price-row__arrow">→</div>
+        </div>
+        <div class="price-row reveal">
+          <div class="price-row__num">04</div>
+          <div class="price-row__name">Csapatépítő <em>program</em></div>
+          <div class="price-row__desc">Teljes körű szervezés privát eseményekhez — házhoz is megyünk</div>
+          <div class="price-row__price">Egyedi<small>ajánlat kérhető</small></div>
+          <div class="price-row__arrow">→</div>
+        </div>
+        <div class="price-row reveal">
+          <div class="price-row__num">05</div>
+          <div class="price-row__name">eFoil <em>bérlet</em></div>
+          <div class="price-row__desc">Kizárólag haladóknak — vedd kezedbe az élményt, hajtsuk nélkül</div>
+          <div class="price-row__price">Hamarosan<small>csak haladóknak</small></div>
+          <div class="price-row__arrow">→</div>
+        </div>
+      </div>
+    </section>
+
+    <!--
+  ══════════ GALLERY (07) · DYNAMIC INSTAGRAM FEED ══════════
+  Ez a szekció a build során valódi Instagram feeddé válik — a @esurfzone
+  legfrissebb posztjai automatikusan frissülnek. Ajánlott beépítési opciók:
+
+    1) Instagram Basic Display API (saját hosszú élettartamú access token)
+       - ingyenes, legnagyobb kontroll, cachelt szerver-oldali lekérés
+    2) LightWidget / SnapWidget / Elfsight / Curator.io (widget)
+       - gyors integráció, nem kell backend, havi díj
+    3) Behance/Instagraph / EmbedSocial (hybrid)
+
+  A .gallery__grid tartalmát dinamikusan cseréli majd a build — a lenti
+  kártyák most placeholder-ként szolgálnak. Minden kártya <a> és a
+  https://www.instagram.com/esurfzone/p/{id}/ posztra mutat.
+-->
+    <section class="gallery">
+      <div class="gallery__head">
+        <div class="reveal">
+          <div class="eyebrow">07 <em>/</em> Pillanatok</div>
+          <h2 class="section-title">
+            Élőben a<br />
+            <em>@esurfzone</em>-ról.
+          </h2>
+        </div>
+        <a class="gallery__profile reveal" href="https://www.instagram.com/esurfzone/" target="_blank" rel="noopener">
+          <div class="gallery__avatar">
+            <img
+              src="https://esurfzone.hu/wp-content/uploads/2026/03/544058312_18055006703441454_2097054186109895135_n.jpg"
+              onerror="
+                this.onerror = null;
+                this.src =
+                  'https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=200&q=80';
+              "
+              alt="@esurfzone"
+            />
+          </div>
+          <div class="gallery__profile-meta">
+            <span class="gallery__handle">@esurfzone</span>
+            <span class="gallery__follow">követés &nbsp;→</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="gallery__grid" id="ig-feed" data-ig-handle="esurfzone">
+        <a class="gallery__item lg reveal" href="https://www.instagram.com/esurfzone/" target="_blank" rel="noopener">
+          <img
+            src="https://esurfzone.hu/wp-content/uploads/2026/03/544058312_18055006703441454_2097054186109895135_n.jpg"
+            onerror="
+              this.onerror = null;
+              this.src =
+                'https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=1200&q=80';
+            "
+            alt="eFoil lebegés a Balatonon"
+          />
+          <div class="gallery__meta">
+            <span
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 21s-7.5-4.6-10-9.3C.3 8.3 2 4 6 4c2 0 3.3 1 4 2 0 0 .5 1 2 1s2-1 2-1c.7-1 2-2 4-2 4 0 5.7 4.3 4 7.7C19.5 16.4 12 21 12 21z"
+                /></svg
+              >1.2k</span
+            >
+            <span
+              ><svg viewBox="0 0 24 24">
+                <path d="M21 12a8.5 8.5 0 1 1-3.4-6.8L21 3v6h-6l2.5-2.5A6.5 6.5 0 1 0 19 12z" /></svg
+              >42</span
+            >
+          </div>
+        </a>
+        <a class="gallery__item reveal" href="https://www.instagram.com/esurfzone/" target="_blank" rel="noopener">
+          <img
+            src="https://esurfzone.hu/wp-content/uploads/2025/12/szolgaltatas3.jpg"
+            onerror="
+              this.onerror = null;
+              this.src = 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=800&q=80';
+            "
+            alt="eFoil oktatás"
+          />
+          <div class="gallery__meta">
+            <span
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 21s-7.5-4.6-10-9.3C.3 8.3 2 4 6 4c2 0 3.3 1 4 2 0 0 .5 1 2 1s2-1 2-1c.7-1 2-2 4-2 4 0 5.7 4.3 4 7.7C19.5 16.4 12 21 12 21z"
+                /></svg
+              >684</span
+            >
+          </div>
+        </a>
+        <a class="gallery__item reveal" href="https://www.instagram.com/esurfzone/" target="_blank" rel="noopener">
+          <img
+            src="https://esurfzone.hu/wp-content/uploads/2025/12/IMG_7922-scaled.jpg"
+            onerror="
+              this.onerror = null;
+              this.src = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80';
+            "
+            alt="eFoil deszka"
+          />
+          <div class="gallery__meta">
+            <span
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 21s-7.5-4.6-10-9.3C.3 8.3 2 4 6 4c2 0 3.3 1 4 2 0 0 .5 1 2 1s2-1 2-1c.7-1 2-2 4-2 4 0 5.7 4.3 4 7.7C19.5 16.4 12 21 12 21z"
+                /></svg
+              >912</span
+            >
+          </div>
+        </a>
+        <a class="gallery__item reveal" href="https://www.instagram.com/esurfzone/" target="_blank" rel="noopener">
+          <img
+            src="https://esurfzone.hu/wp-content/uploads/2026/03/600304766_18064963346441454_4159359877230827287_n.jpg"
+            onerror="
+              this.onerror = null;
+              this.src = 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80';
+            "
+            alt="Siófok Balaton eFoil"
+          />
+          <div class="gallery__meta">
+            <span
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 21s-7.5-4.6-10-9.3C.3 8.3 2 4 6 4c2 0 3.3 1 4 2 0 0 .5 1 2 1s2-1 2-1c.7-1 2-2 4-2 4 0 5.7 4.3 4 7.7C19.5 16.4 12 21 12 21z"
+                /></svg
+              >511</span
+            >
+          </div>
+        </a>
+        <a class="gallery__item reveal" href="https://www.instagram.com/esurfzone/" target="_blank" rel="noopener">
+          <img
+            src="https://esurfzone.hu/wp-content/uploads/2026/04/esurf_mobile_idopont.jpg"
+            onerror="
+              this.onerror = null;
+              this.src = 'https://images.unsplash.com/photo-1502933691298-84fc14542831?auto=format&fit=crop&w=800&q=80';
+            "
+            alt="Foglalás"
+          />
+          <div class="gallery__meta">
+            <span
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 21s-7.5-4.6-10-9.3C.3 8.3 2 4 6 4c2 0 3.3 1 4 2 0 0 .5 1 2 1s2-1 2-1c.7-1 2-2 4-2 4 0 5.7 4.3 4 7.7C19.5 16.4 12 21 12 21z"
+                /></svg
+              >437</span
+            >
+          </div>
+        </a>
+        <a class="gallery__item reveal" href="https://www.instagram.com/esurfzone/" target="_blank" rel="noopener">
+          <img
+            src="https://esurfzone.hu/wp-content/uploads/2025/12/szolgaltatas1.jpg"
+            onerror="
+              this.onerror = null;
+              this.src = 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=80';
+            "
+            alt="Mala Garden Siófok"
+          />
+          <div class="gallery__meta">
+            <span
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 21s-7.5-4.6-10-9.3C.3 8.3 2 4 6 4c2 0 3.3 1 4 2 0 0 .5 1 2 1s2-1 2-1c.7-1 2-2 4-2 4 0 5.7 4.3 4 7.7C19.5 16.4 12 21 12 21z"
+                /></svg
+              >763</span
+            >
+          </div>
+        </a>
+      </div>
+
+      <div class="gallery__foot reveal">
+        <span>Élő feed · automatikus frissítés</span>
+        <a href="https://www.instagram.com/esurfzone/" target="_blank" rel="noopener">@esurfzone követése &nbsp;→</a>
+      </div>
+    </section>
+
+    <!-- ══════════ CTA ══════════ -->
+    <section class="cta" id="foglalas">
+      <div class="cta__kicker">A tó már vár</div>
+      <h2 class="cta__headline">
+        Ma még <em>lebeghetsz</em><br />
+        a Balaton fölött.
+      </h2>
+      <p class="cta__sub">
+        Válaszd ki az időpontot, mi hozzuk a deszkát, a felszerelést és az oktatót. 75 perc múlva már a víz fölött
+        lebegsz — garantáltan.
+      </p>
+      <a href="mailto:info@esurfzone.hu" class="btn-xl">Időpontfoglalás →</a>
+    </section>
+
+    <!-- ══════════ FOOTER ══════════ -->
+    <footer class="footer" id="kapcsolat">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <h3>esurf<em>zone</em></h3>
+          <p>
+            Prémium eFoil élmény a Balatonon. Lebegj a víz fölött, a Mala Gardenből — tavasztól őszig, minden napsütötte
+            napon.
+          </p>
+        </div>
+        <div>
+          <h4>Menü</h4>
+          <ul>
+            <li><a href="#elmenyek">Élmények</a></li>
+            <li><a href="#efoil">Mi az az eFoil</a></li>
+            <li><a href="#helyszin">Helyszín</a></li>
+            <li><a href="#arak">Árak</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Kapcsolat</h4>
+          <ul>
+            <li><a href="tel:+36201234567">+36 20 123 4567</a></li>
+            <li><a href="mailto:info@esurfzone.hu">info@esurfzone.hu</a></li>
+            <li>Mala Garden, Siófok</li>
+            <li>Petőfi sétány 15</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Közösség</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">TikTok</a></li>
+            <li><a href="#">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div>© 2026 ESURFZONE · Minden jog fenntartva</div>
+        <div>Készítette: GRAVITAS · Prémium webdesign</div>
+      </div>
+    </footer>
+
+    <script>
+      // Nav scrolled state
+      const nav = document.getElementById("nav");
+      const onScroll = () => {
+        nav.classList.toggle("scrolled", window.scrollY > 30);
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      // Reveal on scroll
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.14, rootMargin: "0px 0px -60px 0px" },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (ev) => {
+          const id = a.getAttribute("href");
+          if (id.length > 1) {
+            const t = document.querySelector(id);
+            if (t) {
+              ev.preventDefault();
+              t.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }
+        });
+      });
+
+      /* ════════════════════════════════════════════════════════════════
+   LIVE STRIP · Balaton most · Siófok
+   Valódi élő adatok az Open-Meteo API-ból (ingyenes, kulcs nélkül,
+   CORS-enabled). Óra 60 mp-enként, időjárás 10 percenként frissül.
+   Balatoni viharjelzés a következő 6 óra max széllökéséből származtatva:
+     · 60 km/h felett → II. fok (piros)
+     · 40 km/h felett → I. fok  (sárga)
+     · alatta          → nincs   (szürke)
+   ════════════════════════════════════════════════════════════════ */
+      (function balatonLive() {
+        const LAT = 46.9,
+          LON = 18.05;
+        const setField = (name, txt) => {
+          document.querySelectorAll('[data-field="' + name + '"]').forEach((el) => (el.textContent = txt));
+        };
+        const deg2arrow = (d) => {
+          // The arrow points in the direction the wind is BLOWING TOWARD
+          // (meteorological "from" +180°)
+          const arrows = ["↓", "↙", "←", "↖", "↑", "↗", "→", "↘"];
+          return arrows[Math.round((d % 360) / 45) % 8];
+        };
+        const deg2hu = (d) => {
+          const n = ["É", "ÉK", "K", "DK", "D", "DNy", "Ny", "ÉNy"];
+          return n[Math.round((d % 360) / 45) % 8];
+        };
+        const fmt0 = (n) => Math.round(n).toString();
+        const fmt1 = (n) => (Math.round(n * 10) / 10).toString().replace(".", ",");
+
+        // ───── Clock (live, every 60s) ─────
+        const tickClock = () => {
+          try {
+            const now = new Date();
+            const hh = now.toLocaleString("hu-HU", {
+              timeZone: "Europe/Budapest",
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false,
+            });
+            setField("time", hh);
+          } catch (e) {}
+        };
+        tickClock();
+        setInterval(tickClock, 60000);
+
+        // ───── Weather fetcher ─────
+        const wxUrl =
+          "https://api.open-meteo.com/v1/forecast" +
+          "?latitude=" +
+          LAT +
+          "&longitude=" +
+          LON +
+          "&current=temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m" +
+          "&hourly=wind_gusts_10m,wind_speed_10m" +
+          "&daily=sunset,sunrise,uv_index_max" +
+          "&forecast_days=1" +
+          "&timezone=Europe%2FBudapest";
+        const marineUrl =
+          "https://marine-api.open-meteo.com/v1/marine" +
+          "?latitude=" +
+          LAT +
+          "&longitude=" +
+          LON +
+          "&current=sea_surface_temperature,wave_height" +
+          "&timezone=Europe%2FBudapest";
+
+        // TODO (2. lépcső · valódi OMSZ viharjelzés):
+        // Deployolj egy Cloudflare Worker-t / Vercel Edge Function-t ami
+        // a MeteoAlarm Hungary CAP/JSON feedjét kéri le szerver-oldalon:
+        //   https://feeds.meteoalarm.org/api/v1/warnings/feeds-hungary
+        // Szűrd a Somogy/Veszprém régióra (Balaton keleti medence), és add
+        // vissza JSON-ban CORS fejlécekkel. Utána cseréld le a calcVerdict
+        // logikát egy fetch hívásra a worker URL-jére.
+
+        async function refresh() {
+          try {
+            const [wxRes, mRes] = await Promise.all([
+              fetch(wxUrl, { cache: "no-store" })
+                .then((r) => (r.ok ? r.json() : null))
+                .catch(() => null),
+              fetch(marineUrl, { cache: "no-store" })
+                .then((r) => (r.ok ? r.json() : null))
+                .catch(() => null),
+            ]);
+            if (!wxRes) throw new Error("no weather");
+
+            const c = wxRes.current || {};
+            const hh = wxRes.hourly || {};
+            const dd = wxRes.daily || {};
+            const air = c.temperature_2m;
+            const wind = c.wind_speed_10m;
+            const windDir = c.wind_direction_10m;
+            const gustNow = c.wind_gusts_10m;
+            const sunsetISO = (dd.sunset || [])[0];
+
+            // Water: marine API preferred, fallback estimate
+            const water = mRes?.current?.sea_surface_temperature ?? (air != null ? Math.max(14, air - 2) : 21);
+            const wave = mRes?.current?.wave_height;
+
+            if (air != null) setField("air", fmt0(air) + "°");
+            if (water != null) setField("water", fmt0(water) + "°");
+            if (wind != null) setField("wind", fmt0(wind) + " km/h");
+            if (wave != null) setField("wave", fmt1(wave) + " m");
+            if (sunsetISO) {
+              const hm = sunsetISO.slice(11, 16);
+              setField("sunset", hm);
+            }
+            if (windDir != null) {
+              document.querySelectorAll('[data-field="wind-dir"]').forEach((el) => {
+                el.textContent = deg2arrow(windDir);
+                el.title = "Szélirány: " + deg2hu(windDir);
+              });
+            }
+
+            // ── Balaton storm warning logic ──
+            // Check next 6 hours of wind gusts + sustained wind
+            let maxGust = gustNow || 0,
+              maxSustained = wind || 0;
+            const gusts = hh.wind_gusts_10m || [];
+            const sust = hh.wind_speed_10m || [];
+            const times = hh.time || [];
+            if (times.length) {
+              const now = new Date();
+              let startIdx = 0;
+              for (let i = 0; i < times.length; i++) {
+                if (new Date(times[i]) >= now) {
+                  startIdx = i;
+                  break;
+                }
+              }
+              for (let i = startIdx; i < Math.min(startIdx + 6, times.length); i++) {
+                if (gusts[i] != null && gusts[i] > maxGust) maxGust = gusts[i];
+                if (sust[i] != null && sust[i] > maxSustained) maxSustained = sust[i];
+              }
+            }
+
+            let level = 0,
+              text = "Nincs viharjelzés";
+            if (maxGust >= 60 || maxSustained >= 60) {
+              level = 2;
+              text = "II. fok · piros";
+            } else if (maxGust >= 40 || maxSustained >= 40) {
+              level = 1;
+              text = "I. fok · sárga";
+            }
+            document.querySelectorAll('[data-field="warn-root"]').forEach((el) => {
+              el.setAttribute("data-level", String(level));
+              el.title = "Balatoni viharjelzés · max széllökés " + fmt0(maxGust) + " km/h (köv. 6 óra)";
+            });
+            setField("warn-text", text);
+
+            console.info("[Balaton most] Live frissítve", { air, water, wind, windDir, maxGust, level });
+          } catch (err) {
+            console.info("[Balaton most] Offline — fallback értékek maradnak", err);
+          }
+        }
+        refresh();
+        setInterval(refresh, 10 * 60 * 1000); // 10 min
+      })();
+
+      /* ════════════════════════════════════════════════════════════════
+   INSTAGRAM FEED · @esurfzone
+   A sandbox-környezetben az Instagram publikus profil JSON-ja már
+   CORS-szigorítás alatt van (~2024-től), tehát kliens-oldali közvetlen
+   fetch gyakran 401 vagy blokkolt. Ez a script megpróbálja több proxy-n
+   keresztül lekérni a 6 legfrissebb posztot és beilleszti a gridbe.
+   Ha minden próbálkozás sikertelen, a statikus placeholder grid marad.
+
+   PRODUKCIÓS AJÁNLÁS (stabil feed):
+     · LightWidget.com ingyenes embed iframe — 5 perc beállítás
+     · Behold.so — szebb design, Instagram Graph API alapon
+     · Elfsight Instagram Feed — free tier
+     · Instagram Basic Display API + long-lived token (legkontrolláltabb)
+   ════════════════════════════════════════════════════════════════ */
+      (async function instagramFeed() {
+        const handle = "esurfzone";
+        const grid = document.getElementById("ig-feed");
+        if (!grid) return;
+
+        const proxies = [
+          (u) => "https://corsproxy.io/?" + encodeURIComponent(u),
+          (u) => "https://api.allorigins.win/raw?url=" + encodeURIComponent(u),
+          (u) => "https://api.codetabs.com/v1/proxy/?quest=" + encodeURIComponent(u),
+        ];
+        const target = "https://www.instagram.com/" + handle + "/?__a=1&__d=dis";
+
+        const tryFetch = async () => {
+          for (const prox of proxies) {
+            try {
+              const r = await fetch(prox(target), { cache: "no-store" });
+              if (!r.ok) continue;
+              const txt = await r.text();
+              const j = JSON.parse(txt);
+              const edges =
+                j?.graphql?.user?.edge_owner_to_timeline_media?.edges ||
+                j?.data?.user?.edge_owner_to_timeline_media?.edges;
+              if (edges && edges.length) return edges;
+            } catch (e) {
+              /* try next */
+            }
+          }
+          return null;
+        };
+
+        try {
+          const edges = await tryFetch();
+          if (!edges) throw new Error("no proxy worked");
+
+          const posts = edges.slice(0, 6).map((e) => ({
+            img: e.node.display_url || e.node.thumbnail_src,
+            url: "https://www.instagram.com/p/" + e.node.shortcode + "/",
+            likes: e.node.edge_liked_by?.count || e.node.edge_media_preview_like?.count || 0,
+            comments: e.node.edge_media_to_comment?.count || 0,
+            caption: (e.node.edge_media_to_caption?.edges?.[0]?.node?.text || "").slice(0, 80),
+          }));
+
+          const items = grid.querySelectorAll(".gallery__item");
+          posts.forEach((p, i) => {
+            const el = items[i];
+            if (!el) return;
+            el.href = p.url;
+            const img = el.querySelector("img");
+            if (img) {
+              img.src = p.img;
+              img.alt = p.caption || "@esurfzone";
+            }
+            const meta = el.querySelector(".gallery__meta");
+            if (meta) {
+              meta.innerHTML =
+                '<span><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.3C.3 8.3 2 4 6 4c2 0 3.3 1 4 2 0 0 .5 1 2 1s2-1 2-1c.7-1 2-2 4-2 4 0 5.7 4.3 4 7.7C19.5 16.4 12 21 12 21z"/></svg>' +
+                p.likes.toLocaleString("hu-HU") +
+                "</span>" +
+                '<span><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>' +
+                p.comments +
+                "</span>";
+            }
+          });
+          console.info("[Instagram feed] Live betöltve · " + posts.length + " poszt");
+        } catch (err) {
+          console.info(
+            "[Instagram feed] Offline — placeholder grid marad. Prod: LightWidget / Behold / IG Graph API.",
+            err,
+          );
+        }
+      })();
+    </script>
+  </body>
+</html>
